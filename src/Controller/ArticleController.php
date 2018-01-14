@@ -28,9 +28,11 @@ class ArticleController extends AbstractController
      * @Route("blog/{title}")
      */
 
+
+
     public function show($title)
     {
-        $comments = array('sup', 'cool');
+        $comments = array('sup', 'cool', $title);
         return $this->render('article/show.html.twig', array('title' => $title, 'comments' => $comments));
     }
 
