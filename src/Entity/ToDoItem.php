@@ -22,9 +22,9 @@ class ToDoItem
     private $stood;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", options={"default" = false})
      */
-    private $completed;
+    private $completed = false;
 
     /**
      * @return mixed

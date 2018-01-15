@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}
-    To Do
+    To Do List
 {% endblock %}
 
 {% block body %}
@@ -9,13 +9,17 @@
         {% for todo in stood %}
             <li>
                 {% if todo.completed %}
-                    <a href="/stood/not-completed/{{ todo.id }}">not finished actually?</a>
+                    <a href="{{ path('not_completed', {id: todo.id}) }}">not finished actually?</a>
                 {% else %}
-                    <a href="/stood/completed/{{ todo.id }}">finished?</a>
+                    <a href="{{ path('completed', {id: todo.id}) }}">finished?</a>
                 {% endif %}
                 {{ todo.stood }}
             </li>
+            <a href="{{ path('delete', {id: todo.id}) }}">Delete</a>
         {% endfor %}
-        <form action=""></form>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
     </ul>
 {% endblock %}
