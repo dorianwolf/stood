@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    To Do
+{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    <ul>
+        {% for todo in stood %}
+            <li>
+                {% if todo.completed %}
+                    <a href="/stood/not-completed/{{ todo.id }}">not finished actually?</a>
+                {% else %}
+                    <a href="/stood/completed/{{ todo.id }}">finished?</a>
+                {% endif %}
+                {{ todo.stood }}
+            </li>
+        {% endfor %}
+        <form action=""></form>
+    </ul>
+{% endblock %}

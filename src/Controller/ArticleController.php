@@ -15,25 +15,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends AbstractController
 {
-    /**
-     * @Route("/")
-     */
-
-    public function homepage()
-    {
-        return new Response('sup');
-    }
 
     /**
      * @Route("blog/{title}")
      */
 
-
-
     public function show($title)
     {
         $comments = array('sup', 'cool', $title);
-        return $this->render('article/show.html.twig', array('title' => $title, 'comments' => $comments));
+        return $this->render('todo/show.html.twig', array('title' => $title, 'stood' => $comments[0]));
     }
 
 }
