@@ -1,21 +1,105 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <script src="https://use.fontawesome.com/06f8a2b34b.js"></script>
+    <style>
+        * {
+            transition: border .5s;
+            color: rgba(10,10,10, 0.8);
+        }
+        body {
+            font-family: Helvetica;
+            max-width: 600px;
+            height: 100vh;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding-top: 100px;
+            background: radial-gradient(closest-side at 50% 35%, #DDDDDD, #C2D7ED 90%);
+        }
+        h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        h1, #form {
+            text-align: center;
+        }
+        ul.stood {
+            border: 3px solid rgba(10,10,10, 0.5);
+            border-radius: 4px;
+            padding: 30px 20px;
+
+        }
+        li.todo {
+            margin: 20px auto;
+            font-size: 18px;
+            font-weight: 200;
+            letter-spacing: 1.3px;
+            display: block;
+        }
+        li.todo a {
+            margin: 0 10px;
+            color: black;
+        }
+        .delete {
+            float: right;
+            position: relative;
+        }
+        .delete i {
+            transition: opacity .2s;
+            display: inline-block;
+            position: absolute;
+            right: 3px;
+        }
+        a:hover .unhover, a .hover {
+
+            opacity: 0;
+        }
+
+        a .unhover, a:hover .hover {
+
+            opacity: 1;
+        }
+        #form div {
+            display: inline-block;
+        }
+        #form label, #form button {
+            display: none;
+        }
+        #form input {
+            background-color: transparent;
+            height: 30px;
+            font-size: 18px;
+            font-weight: 200;
+            letter-spacing: 1.3px;
+            border: none;
+            border-bottom: 1px solid rgba(10,10,10, 0.2);
+            padding-left: 15px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        #form input:focus {
+            outline: none;
+            border-bottom: 2px solid #84B7ED;
+        }
+    </style>
+{% endblock %}
 {% block title %}
     To Do List
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
-    <ul>
+    <ul class="stood">
+        <h1>{{ title }}</h1>
         {% for todo in stood %}
-            <li>
+            <li class="todo">
                 {% if todo.completed %}
-                    <a href="{{ path('not_completed', {id: todo.id}) }}">not finished actually?</a>
+                    <a href="{{ path('not_completed', {id: todo.id}) }}"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i></a>
                 {% else %}
-                    <a href="{{ path('completed', {id: todo.id}) }}">finished?</a>
+                    <a href="{{ path('completed', {id: todo.id}) }}"><i class="fa fa-square-o fa-lg" aria-hidden="true"></i></a>
                 {% endif %}
                 {{ todo.stood }}
+                <a href="{{ path('delete', {id: todo.id}) }}" class="delete"><i class="fa fa-times-circle-o unhover fa-lg" aria-hidden="true"></i><i class="fa fa-times-circle hover fa-lg" aria-hidden="true"></i></a>
             </li>
-            <a href="{{ path('delete', {id: todo.id}) }}">Delete</a>
         {% endfor %}
 
         {{ form_start(form) }}

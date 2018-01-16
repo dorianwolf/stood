@@ -39,7 +39,7 @@ class ToDoItemController extends Controller
             return $this->redirect($request->getUri());
         }
 
-        return $this->render('todo/show.html.twig', array('title' => 'sup', 'stood' => $list, 'form' => $form->createView()));
+        return $this->render('todo/show.html.twig', array('title' => 'To Dos', 'stood' => $list, 'form' => $form->createView()));
     }
 
     /**
